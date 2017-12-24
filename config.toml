@@ -1,0 +1,21 @@
+baseURL = "http://www.zsney.com/"
+languageCode = "en-us"
+title = "Lucky Zhou's Blog"
+theme = "hugo_theme_beg"
+
+###################### Theme config
+[params]
+  hasBrandImage = true
+  brandImage = "/images/brand_logo.jpg"
+  brandImageAlt = "Lucky Zhou"
+
+## Menu settings
+[[menu.lifeline]]
+  name = "Life Line"
+  url = "/lifeline"
+
+[[menu.aboutme]]
+  name = "About Me"
+  url = "/aboutme"
+
+
