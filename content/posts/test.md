@@ -1,7 +1,7 @@
 ---
 title: "Test"
 date: 2017-12-23T11:39:35+08:00
-draft: true
+draft: false
 ---
 
 joiwjqoioejwijjoiwjqoioejwijjoiwjqoioejwijjoiwjqoioejwijjjoiwjqoioejwijjoiwjqoioejwij,
