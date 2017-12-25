@@ -1,0 +1,3 @@
+[submodule "themes/hugo_theme_beg"]
+	path = themes/hugo_theme_beg
+	url = git@github.com:zslucky/hugo_theme_beg.git
