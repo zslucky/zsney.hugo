@@ -6,6 +6,7 @@ theme = "hugo_theme_beg"
 
 ###################### Theme config
 [params]
+  favicon = "/images/favicon.ico"
   hasBrandImage = true
   brandImage = "/images/brand_logo.jpg"
   brandImageAlt = "Lucky Zhou"
