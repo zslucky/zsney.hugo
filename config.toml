@@ -1,4 +1,5 @@
-baseURL = "http://www.zsney.com/"
+# baseURL = "http://www.zsney.com/"
+baseURL = "/"
 languageCode = "en-us"
 title = "Lucky Zhou's Blog"
 theme = "hugo_theme_beg"
