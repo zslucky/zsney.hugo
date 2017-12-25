@@ -1,5 +1,5 @@
 # baseURL = "http://www.zsney.com/"
-baseURL = "http://zsney.netlify.com/"
+baseURL = "https://zsney.netlify.com/"
 languageCode = "en-us"
 title = "Lucky Zhou's Blog"
 theme = "hugo_theme_beg"
