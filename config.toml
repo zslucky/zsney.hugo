@@ -4,6 +4,16 @@ languageCode = "en-us"
 title = "Lucky Zhou's Blog"
 theme = "hugo_theme_beg"
 
+####################################
+# For syntax hightlight style theme
+####################################
+# pygmentsUseClassic = true
+# pygmentsStyle = "github"
+
+[permalinks]
+  post = "/blog/:year/:month/:day/:title/"
+  top = "/:filename/"
+
 ###################### Theme config
 [params]
   favicon = "/images/favicon.ico"
@@ -14,11 +24,11 @@ theme = "hugo_theme_beg"
 ## Menu settings
 [[menu.aboutme]]
   name = "About Me"
-  url = "/aboutme"
+  url = "/about/"
 
 [[menu.lifeline]]
   name = "Life Line"
-  url = "/lifeline"
+  url = "/about/"
 
 
 
