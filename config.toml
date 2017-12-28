@@ -20,15 +20,16 @@ theme = "hugo_theme_beg"
   hasBrandImage = true
   brandImage = "/images/brand_logo.jpg"
   brandImageAlt = "Lucky Zhou"
+  github = "zslucky"
 
 ## Menu settings
 [[menu.aboutme]]
   name = "About Me"
   url = "/about/"
 
-[[menu.lifeline]]
-  name = "Life Line"
-  url = "/about/"
+# [[menu.lifeline]]
+#   name = "Life Line"
+#   url = "/about/"
 
 
 
