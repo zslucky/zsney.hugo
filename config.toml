@@ -22,6 +22,11 @@ theme = "hugo_theme_beg"
   brandImageAlt = "Lucky Zhou"
   github = "zslucky"
 
+  custom_css = ["css/main.css"]
+
+[params.timeline]
+  years = ["2011", "2012", "2013", "2014", "2015", "2016", "2017"]
+
 ## Menu settings
 [[menu.aboutme]]
   name = "About Me"
