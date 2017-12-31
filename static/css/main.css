@@ -1,3 +1,7 @@
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
 .timeline {
   display: flex;
   justify-content: space-between;

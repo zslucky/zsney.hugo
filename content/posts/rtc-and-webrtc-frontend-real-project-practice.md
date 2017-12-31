@@ -7,6 +7,11 @@ categories:
 tags:
   - rtc
   - webrtc
+links:
+  - title: "Baidu"
+    link: "https://www.baidu.com"
+  - title: "Google"
+    link: "https://www.google.com"
 ---
 
 This is a real project practice that I did by using `RTC` and `WebRTC`, I will Introduce the technical points and some important points that I met in development, hope this can help you to know RTC a bit more deep in frontend.
@@ -58,7 +63,7 @@ There are 2 reasons I choose the sockjs.
 _Browser_       | _Websockets_     | _Streaming_ | _Polling_
 ----------------|------------------|-------------|-------------------
 IE 6, 7         | no               | no          | jsonp-polling
-IE 8, 9 (cookies=no) |    no       | xdr-streaming &dagger; | xdr-polling &dagger;
+IE 8, 9 (cookies=no) |    no       | xdr-streaming &dagger; | xdr-polling **&dagger;**
 IE 8, 9 (cookies=yes)|    no       | iframe-htmlfile | iframe-xhr-polling
 IE 10           | rfc6455          | xhr-streaming   | xhr-polling
 Chrome 6-13     | hixie-76         | xhr-streaming   | xhr-polling
@@ -67,20 +72,41 @@ Firefox <10     | no &Dagger;      | xhr-streaming   | xhr-polling
 Firefox 10+     | hybi-10 / rfc6455| xhr-streaming   | xhr-polling
 Safari 5.x      | hixie-76         | xhr-streaming   | xhr-polling
 Safari 6+       | rfc6455          | xhr-streaming   | xhr-polling
-Opera 10.70+    | no &Dagger;      | iframe-eventsource | iframe-xhr-polling
+Opera 10.70+    | no **&Dagger;**      | iframe-eventsource | iframe-xhr-polling
 Opera 12.10+    | rfc6455          | xhr-streaming | xhr-polling
 Konqueror       | no               | no          | jsonp-polling
 
- * &dagger;: IE 8+ supports [XDomainRequest](https://blogs.msdn.microsoft.com/ieinternals/2010/05/13/xdomainrequest-restrictions-limitations-and-workarounds/), which is
+ * **&dagger;** : IE 8+ supports [XDomainRequest](https://blogs.msdn.microsoft.com/ieinternals/2010/05/13/xdomainrequest-restrictions-limitations-and-workarounds/), which is
     essentially a modified AJAX/XHR that can do requests across
     domains. But unfortunately it doesn't send any cookies, which
     makes it inappropriate for deployments when the load balancer uses
     JSESSIONID cookie to do sticky sessions.
 
- * &Dagger;: Firefox 4.0 and Opera 11.00 and shipped with disabled
+ * **&Dagger;** : Firefox 4.0 and Opera 11.00 and shipped with disabled
      Websockets "hixie-76". They can still be enabled by manually
      changing a browser setting.
 
 So, in theory, we can support all browsers by using `srping + spring-websocket + sockjs + stompjs`, In fact, we know our users will only use IE10+ browsers, looks like this consideration is needless, but if you are working on some projects which need this feature, you will like it~~
+
+Then the client code looks like this:
+
+```javascript
+import { Stomp } from 'stompjs'
+import SockJS from 'sockjs-client'
+
+// 1. Create the socket
+const sock = new SockJS('https://example.com')
+
+// 2. Create the message protocol client
+const stompClient = Stomp.over(sock)
+
+// Create connection
+stompClient.connect({}, frame => {
+  // Subscribe the topic
+  stompClient.subscribe('demo-topic', data => {
+    // ... doing something with data
+  })
+})
+```
 
 ### WebRTC Introducing

@@ -1,7 +1,7 @@
 # baseURL = "http://www.zsney.com/"
 baseURL = "https://zsney.netlify.com/"
 languageCode = "en-us"
-title = "Lucky Zhou's Blog"
+title = "Lucky Zhou"
 theme = "hugo_theme_beg"
 
 ####################################
@@ -21,8 +21,11 @@ theme = "hugo_theme_beg"
   brandImage = "/images/brand_logo.jpg"
   brandImageAlt = "Lucky Zhou"
   github = "zslucky"
+  facebook = "zsney.lzhou"
+  wechat = "Zsney88"
+  qq = "444950680"
 
-  custom_css = ["css/main.css"]
+  custom_css = ["css/font.css", "css/main.css"]
 
 [params.timeline]
   years = ["2011", "2012", "2013", "2014", "2015", "2016", "2017"]
@@ -30,6 +33,7 @@ theme = "hugo_theme_beg"
 ## Menu settings
 [[menu.aboutme]]
   name = "About Me"
+  pre = "<i class='fa fa-heart'></i>"
   url = "/about/"
 
 # [[menu.lifeline]]
