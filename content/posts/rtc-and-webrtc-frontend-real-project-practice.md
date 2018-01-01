@@ -63,12 +63,12 @@ There are 2 reasons I choose the sockjs.
 _Browser_       | _Websockets_     | _Streaming_ | _Polling_
 ----------------|------------------|-------------|-------------------
 IE 6, 7         | no               | no          | jsonp-polling
-IE 8, 9 (cookies=no) |    no       | xdr-streaming &dagger; | xdr-polling **&dagger;**
+IE 8, 9 (cookies=no) |    no       | xdr-streaming **&dagger;** | xdr-polling **&dagger;**
 IE 8, 9 (cookies=yes)|    no       | iframe-htmlfile | iframe-xhr-polling
 IE 10           | rfc6455          | xhr-streaming   | xhr-polling
 Chrome 6-13     | hixie-76         | xhr-streaming   | xhr-polling
 Chrome 14+      | hybi-10 / rfc6455| xhr-streaming   | xhr-polling
-Firefox <10     | no &Dagger;      | xhr-streaming   | xhr-polling
+Firefox <10     | no **&Dagger;**      | xhr-streaming   | xhr-polling
 Firefox 10+     | hybi-10 / rfc6455| xhr-streaming   | xhr-polling
 Safari 5.x      | hixie-76         | xhr-streaming   | xhr-polling
 Safari 6+       | rfc6455          | xhr-streaming   | xhr-polling

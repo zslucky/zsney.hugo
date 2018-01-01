@@ -23,7 +23,11 @@ theme = "hugo_theme_beg"
   github = "zslucky"
   facebook = "zsney.lzhou"
   wechat = "Zsney88"
+  wechatQrcode = "/images/wechat_qrcode.jpeg"
+  google = "zsney.lzhou@gmail.com"
   qq = "444950680"
+  name = "Lucky Zhou"
+  bio = "<p>I love open source world, I'm a senior Java and Frontend engineer, also a junior AI engineer. I'm reading Master degree of Finance, I want to explore some interesting things with AI and Finance.</p><p>If you are interested with me or any suggestion for me. don't hesitated to contact me!</p>"
 
   custom_css = ["css/font.css", "css/main.css"]
 

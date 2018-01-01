@@ -1,20 +1,100 @@
 {{ define "title" }}{{ if not .IsHome }}{{ .Title }} - {{ end }}{{ end }}
 
 {{ define "main" }}
-<div class="row">
-  <div class="col-lg-12">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">My Skill Tree</h3>
+<div class="row about__base-info">
+  <div class="col-lg-4">
+    <img src="{{ .Site.Params.WechatQrcode }}" />
+  </div>
+  <div class="col-lg-8">
+    <h3>Contact</h3>
+    <div class="row contact">
+      <div class="col-lg-6">
+        <a href="mailto:{{ .Site.Params.Google }}">
+          <i class="fa fa-google"></i>&nbsp;
+          {{ .Site.Params.Google }}
+        </a>
       </div>
-      <div class="panel-body">
-        <div class="timeline">
-          {{ range .Site.Params.Timeline.Years }}
-          <h5>{{ . }}</h5>
-          {{ end }}
-        </div>
+      <div class="col-lg-6">
+        <a href="https://github.com/{{ .Site.Params.Github }}">
+          <i class="fa fa-github"></i>&nbsp;
+          {{ .Site.Params.Github }}
+        </a>
       </div>
     </div>
+    <h3>Bio</h3>
+    <p>{{ .Site.Params.Bio | safeHTML }}</p>
   </div>
 </div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div id="main" style="width: 100%;height:450px;"></div>
+  </div>
+</div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/echarts/3.8.5/echarts-en.common.min.js"></script>
+<script type="text/javascript">
+  // based on prepared DOM, initialize echarts instance
+  var myChart = echarts.init(document.getElementById('main'));
+
+  // specify chart configuration item and data
+  var option = {
+      title: {
+        text: 'Skill Tree'
+      },
+      legend: {
+        data: ['Javascript', 'Java', 'Python', 'C#', 'Groovy']
+      },
+      grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+      },
+      xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ["2011", "2012", "2013", "2014", "2015", "2016", "2017"]
+      },
+      yAxis: {
+        type: 'value',
+        boundaryGap: false,
+        data: [0, 25, 50, 75, 100],
+        axisLabel: {
+          formatter: '{value}%'
+        }
+      },
+      series: [
+        {
+          name: 'Javascript',
+          type: 'line',
+          // label: { normal: { formatter: 'Javascript', show: true } },
+          data: [50, 50, 20, 50, 80, 95, 95]
+        },
+        {
+          name: 'Java',
+          type: 'line',
+          data: [10, 40, 90, 80, 50, 40, 40]
+        },
+        {
+          name: 'Python',
+          type: 'line',
+          data: [0, 0, 0, 0, 5, 40, 60]
+        },
+        {
+          name: 'C#',
+          type: 'line',
+          data: [75, 20, 0, 10, 0, 0, 0]
+        },
+        {
+          name: 'Groovy',
+          type: 'line',
+          data: [0, 0, 0, 5, 15, 10, 5]
+        },
+      ]
+  };
+
+  // use configuration item and data specified to show chart
+  myChart.setOption(option);
+</script>
 {{ end }}

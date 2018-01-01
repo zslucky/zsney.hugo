@@ -6,3 +6,7 @@ body {
   display: flex;
   justify-content: space-between;
 }
+
+.about__base-info {
+  margin-bottom: 4.5rem;
+}
