@@ -10,3 +10,16 @@ body {
 .about__base-info {
   margin-bottom: 4.5rem;
 }
+
+.about__base-info .qrcode {
+  padding-top: .8rem;
+  position: relative;
+}
+
+.about__wechat {
+  color: #47a637;
+  position: absolute;
+  left: 50%;
+  top: 2.5rem;
+  transform: translate3d(-50%, -50%, 0);
+}

@@ -2,8 +2,9 @@
 
 {{ define "main" }}
 <div class="row about__base-info">
-  <div class="col-lg-4">
+  <div class="col-lg-4 qrcode">
     <img src="{{ .Site.Params.WechatQrcode }}" />
+    <i class="fa fa-wechat about__wechat"></i>
   </div>
   <div class="col-lg-8">
     <h3>Contact</h3>
@@ -43,7 +44,7 @@
         text: 'Skill Tree'
       },
       legend: {
-        data: ['Javascript', 'Java', 'Python', 'C#', 'Groovy']
+        data: ['Javascript', 'Java', 'Python', 'C#', 'Groovy', 'PHP']
       },
       grid: {
         left: '3%',
@@ -74,12 +75,12 @@
         {
           name: 'Java',
           type: 'line',
-          data: [10, 40, 90, 80, 50, 40, 40]
+          data: [10, 40, 95, 90, 60, 50, 50]
         },
         {
           name: 'Python',
           type: 'line',
-          data: [0, 0, 0, 0, 5, 40, 60]
+          data: [0, 0, 0, 0, 15, 50, 65]
         },
         {
           name: 'C#',
@@ -90,6 +91,11 @@
           name: 'Groovy',
           type: 'line',
           data: [0, 0, 0, 5, 15, 10, 5]
+        },
+        {
+          name: 'PHP',
+          type: 'line',
+          data: [0, 5, 5, 0, 15, 20, 15]
         },
       ]
   };
