@@ -3,6 +3,9 @@ baseURL = "https://zsney.netlify.com/"
 languageCode = "en-us"
 title = "Lucky Zhou"
 theme = "hugo_theme_beg"
+disqusShortname = "zsney"
+
+staticDir = ["static", "content_static"]
 
 ####################################
 # For syntax hightlight style theme

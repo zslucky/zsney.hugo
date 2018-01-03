@@ -7,11 +7,6 @@ categories:
 tags:
   - rtc
   - webrtc
-links:
-  - title: "Baidu"
-    link: "https://www.baidu.com"
-  - title: "Google"
-    link: "https://www.google.com"
 ---
 
 This is a real project practice that I did by using `RTC` and `WebRTC`, I will Introduce the technical points and some important points that I met in development, hope this can help you to know RTC a bit more deep in frontend.
@@ -25,6 +20,7 @@ This is a real project practice that I did by using `RTC` and `WebRTC`, I will I
 - [Technical Introducing](#technical-introducing)
   - [RTC Introducing](#rtc-introducing)
   - [WebRTC Introducing](#webrtc-introducing)
+- [Full Architecture In My Mind](#full-architecture-in-my-mind)
 
 ## About Project
 
@@ -109,4 +105,60 @@ stompClient.connect({}, frame => {
 })
 ```
 
+That's it, quite easy right?
+
 ### WebRTC Introducing
+
+For WebRTC, it's a quite new API in modern browsers, if you have some project that you kown the user will only use newest browsers then you can try this feature.
+
+For WebRTC, there are many technical points in it, the most important one I think should be Network, as WebRTC based on P2P connection, so how to let 2 peers to know and connect each other is the precondition.
+
+So let's see the P2P connection flow first, then explain for every components.
+
+![P2P](/frontend/p2p.png)
+
+I will use a example flow to explain the work flow for WebRTC:
+
+1. Make sure the both peer are online, we can know this through signal server(which used to register peer info and transfer peer info).
+2. Now left peer want to communicate with Right peer, so he should prepare the peer first and add local media stream to it.
+3. The left peer will prepare the ICE server in local.
+3. The left peer will send request to STUN and TURN server to ask its peer info in public network.
+4. After peer info ready, left peer will send the info to signal server, then signal server will forward this info to right peer.
+5. When right peer received the left peer's info, he know that left peer want to communicate to him.
+6. The right peer will prepare the peer(maybe this action can be done more early) and add local media stream to it.
+7. The right peer handled left peer's info as its remote connection info.
+8. The right peer will prepare the ICE server in local.
+9. The right peer will send request to STUN and TURN server to ask its peer info in public network.
+10. After peer info ready, right peer will send the info to signal server, then signal server will forward this info back to left peer.
+11. The left peer received the right peer's info, handled the right peer's info as its remote connection info.
+12. During this time, ICE server will check valid resources and build connection between 2 peers.
+
+In this flow, there are 4 important things:
+
+ * **`Signal server`** : The server used for peers to exchane signals(which is the peer info here)
+ * **`ICE server`** : The server which implemented in browser, used to communicate another ICE server in other browser.
+ * **`STUN`** : The server can detect your device's IP address and port.
+ * **`TURN`** : This like STUN, but it's a relay server that can relay on 2 devices which behind of the complex network.
+
+ > Here In my poject I used rtc server as the signal server, used some public STUN servers.
+
+In real world, I still met a big challenge with complex network, before release the project, we tested many times in local network, everythings OK, but after deployed out to public network, everyhing are broken, what happened? I'm sure this issue due to the network, but how to determine the issue?
+
+Here is my investigation step(not only for network issue, but also for others):
+
+1. **Check the device status**: This step can be down by using a tool from google, [WebRTC troubleshooter](https://test.webrtc.org/), this tool can help you to know a overview for your device's status.
+2. **Check media in local**: This step should input some code to test your local media's status by using Media API and `chrome://media-internals/` devtool.
+3. **Check ICE with STUN and TURN**: This step used to verify whether STUN and TURN are working correctly, and whether ICE can gather the STUN and TURN info, this step can be down by using a another tool from google, [Trickle ICE](https://webrtc.github.io/samples/src/content/peerconnection/trickle-ice/).
+4. **WebRTC devtool**: If all above things are correct, your project may worked. Actually, all browsers which support WebRTC also provide devtool for WebRTC, like `chrome://webrtc-internals` in Chrome, `opera://webrtc-internals` in Opera, `about:webrtc` in Firefox
+
+Finally, I found the my project should use TURN server as a fallback, because STUN server can only help to find same hosted or in public network machines, if the machines which behind the firewall or NAT, it may failed, then I tried to find is there any public TURN server, but unfortunately, looks only a few. So I setup my own TURN server.(like COTURN etc... there have some exsit images in docker hub).
+
+> We must try STUN first, because if 2 peers can connect directly by using UDP or TCP, it should be efficient. TRUN server is a relay server which between the 2 peers, it should be expensive.
+
+Then I solved my issues, everyone can be reached in everywhere.
+
+## Full Architecture In My Mind
+
+
+
+Thank you for you reading!
