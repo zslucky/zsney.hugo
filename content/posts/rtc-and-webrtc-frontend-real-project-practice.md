@@ -7,6 +7,13 @@ categories:
 tags:
   - rtc
   - webrtc
+links:
+  - title: "Github:sockjs/sockjs-client WebSocket emulation"
+    link: "https://github.com/sockjs/sockjs-client"
+  - title: "Getting Started with WebRTC"
+    link: "https://www.html5rocks.com/en/tutorials/webrtc/basics/"
+  - title: "Spring framework reference - websocket"
+    link: "https://docs.spring.io/spring-framework/docs/5.0.0.BUILD-SNAPSHOT/spring-framework-reference/html/websocket.html"
 ---
 
 This is a real project practice that I did by using `RTC` and `WebRTC`, I will Introduce the technical points and some important points that I met in development, hope this can help you to know RTC a bit more deep in frontend.
@@ -153,12 +160,14 @@ Here is my investigation step(not only for network issue, but also for others):
 
 Finally, I found the my project should use TURN server as a fallback, because STUN server can only help to find same hosted or in public network machines, if the machines which behind the firewall or NAT, it may failed, then I tried to find is there any public TURN server, but unfortunately, looks only a few. So I setup my own TURN server.(like COTURN etc... there have some exsit images in docker hub).
 
-> We must try STUN first, because if 2 peers can connect directly by using UDP or TCP, it should be efficient. TRUN server is a relay server which between the 2 peers, it should be expensive.
+> We must try STUN first, because if 2 peers can connect directly by using UDP or TCP, it should be efficient. TRUN server is a relay server which always try to relay on 2 peers connections, it should be expensive.
 
 Then I solved my issues, everyone can be reached in everywhere.
 
 ## Full Architecture In My Mind
 
-
+<p align="center">
+  <img width="465" height="679" src="/frontend/rtc_project.png" alt="rtc_architecture">
+</p>
 
 Thank you for you reading!
